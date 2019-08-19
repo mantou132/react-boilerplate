@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es6",
+    "lib": ["es2018", "dom"],
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": ["src"]
+}
