@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { ReactComponent as Logo } from './logo.svg';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { useStore } from 'effector-react';
+
 import { postsStore, fetchPosts } from './store/posts';
+import { ReactComponent as Logo } from './logo.svg';
 
 const GlobalStyle = createGlobalStyle`
   body {
