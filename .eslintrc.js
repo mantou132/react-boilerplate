@@ -16,14 +16,14 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
-      'error',
+      process.env.NODE_ENV === 'production' ? 2 : 1,
       {
         vars: 'all',
         args: 'after-used',
         ignoreRestSiblings: true,
         caughtErrors: 'none',
+        varsIgnorePattern: '^_',
         argsIgnorePattern: '^_',
       },
     ],

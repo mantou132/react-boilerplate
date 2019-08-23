@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import { ReactComponent as Logo } from './logo.svg';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { useStore } from 'effector-react';
 import { postsStore, fetchPosts } from './store/posts';
@@ -24,7 +24,7 @@ const AppLogoSpin = keyframes`
   }
 `;
 
-const AppLogo = styled.img`
+const AppLogo = styled(Logo)`
   animation: ${AppLogoSpin} 20s linear;
   height: 40vmin;
   pointer-events: none;
@@ -55,7 +55,7 @@ export default function App() {
     <AppWrap>
       <GlobalStyle />
       <AppHeader>
-        <AppLogo src={logo} alt="logo" />
+        <AppLogo />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
