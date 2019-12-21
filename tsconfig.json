@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "alwaysStrict": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "skipLibCheck": true, // styled-components -> react-native
     "sourceMap": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "target": "es6",
-    "lib": ["es2018", "dom"],
     "jsx": "react",
-    "typeRoots": ["./src/types"]
+    "lib": ["es2020", "dom"],
+    "typeRoots": ["node_mobules/@types", "src/types"],
+    "paths": {
+      "src": ["src/*"]
+    }
   },
   "include": ["src"]
 }
+

@@ -3,7 +3,7 @@ module.exports = {
   extends: [
     'plugin:import/errors',
     'plugin:import/warnings',
-    'plugin:import/typescript',
+    // 'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
@@ -14,9 +14,20 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  settings: {
+    'import/resolver': {
+      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
+    },
+  },
   rules: {
     // https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/order.md
-    'import/order': ['error', { 'newlines-between': 'always-and-inside-groups' }],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always-and-inside-groups',
+        groups: ["builtin", "external", "parent", "sibling", "index", "unknown"],
+      },
+    ],
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

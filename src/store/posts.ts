@@ -1,6 +1,6 @@
 import { createStore, createEvent } from 'effector';
 
-import * as api from '../service/api';
+import * as api from 'src/service/api';
 
 interface PostStore {
   list: api.Post[];

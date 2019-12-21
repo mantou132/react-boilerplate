@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import { ReactComponent as Logo } from './logo.svg';
-import Home from './pages/home';
-import About from './pages/about';
+import { ReactComponent as Logo } from 'src/logo.svg';
+import Home from 'src/pages/home';
+import About from 'src/pages/about';
 
 const GlobalStyle = createGlobalStyle`
   body {

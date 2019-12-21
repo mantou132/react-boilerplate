@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useStore } from 'effector-react';
 
-import { postsStore, fetchPosts } from '../store/posts';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+
+import { postsStore, fetchPosts } from 'src/store/posts';
 
 const List = styled.ol``;
 const ListItem = styled.li``;

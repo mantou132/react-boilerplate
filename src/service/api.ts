@@ -1,4 +1,4 @@
-import request from './request';
+import request from 'src/service/request';
 
 export interface Post {
   id: number;
