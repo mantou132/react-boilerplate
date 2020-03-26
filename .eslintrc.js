@@ -3,7 +3,7 @@ module.exports = {
   extends: [
     'plugin:import/errors',
     'plugin:import/warnings',
-    // 'plugin:import/typescript',
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
@@ -28,6 +28,7 @@ module.exports = {
         groups: ["builtin", "external", "parent", "sibling", "index", "unknown"],
       },
     ],
+    'import/default': 0,
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
