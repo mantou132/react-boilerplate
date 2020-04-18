@@ -8,13 +8,13 @@
     "sourceMap": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "target": "es6",
     "jsx": "react",
     "lib": ["es2020", "dom"],
-    "typeRoots": ["node_mobules/@types", "src/types"],
     "paths": {
       "src": ["src/*"]
     }
