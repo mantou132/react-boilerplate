@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import App from 'src/App';
 
-render(<App />, document.body.appendChild(document.createElement('div')));
+render(<App />, document.querySelector('#root'));
 
 if (navigator.serviceWorker) {
   window.addEventListener('load', () => {

@@ -9,6 +9,7 @@ app:
 
 build:
 
+- yarn
 - webpack
 - ts-loader
 - typescript

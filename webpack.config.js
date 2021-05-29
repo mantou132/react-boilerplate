@@ -1,12 +1,18 @@
 const path = require('path');
 
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ReactRefreshTypeScript = require('react-refresh-typescript');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 /**
  * @type {import('webpack-pwa-manifest').ManifestOptions}
@@ -29,7 +35,7 @@ const webManifestConfig = {
 };
 
 /**
- * @type {import('webpack/declarations/WebpackOptions').WebpackOptions}
+ * @type {import('webpack').Configuration}
  */
 module.exports = {
   entry: './src/main',
@@ -37,8 +43,17 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
         exclude: /node_modules/,
+        use: [
+          {
+            loader: require.resolve('ts-loader'),
+            options: {
+              getCustomTransformers: () => ({
+                before: isDevelopment ? [ReactRefreshTypeScript()] : [],
+              }),
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/,
@@ -60,7 +75,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
   },
   plugins: [
-    new ManifestPlugin(),
+    new WebpackManifestPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: webManifestConfig.name,
@@ -69,6 +84,9 @@ module.exports = {
         description: webManifestConfig.description,
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
       },
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'public', to: './' }],
     }),
     new PreloadWebpackPlugin({
       rel: 'preload',
@@ -81,8 +99,11 @@ module.exports = {
     }),
     new WebpackPwaManifest(webManifestConfig),
     new GenerateSW(),
-  ],
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
   devServer: {
+    hot: true,
     contentBase: './build',
     historyApiFallback: true,
   },

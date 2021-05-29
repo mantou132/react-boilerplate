@@ -17,7 +17,7 @@
     "lib": ["es2020", "dom"],
     "typeRoots": ["node_mobules/@types", "src/types"],
     "paths": {
-      "src": ["src/*"]
+      "src": ["src"]
     }
   },
   "include": ["src"]

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
 import { ReactComponent as Logo } from 'src/logo.svg';
-import Home from 'src/pages/home';
-import About from 'src/pages/about';
+
+const Home = lazy(() => import('src/pages/home'));
+const About = lazy(() => import('src/pages/about'));
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -72,8 +73,16 @@ export default function App() {
             <InternalLink to="/about">About</InternalLink>
           </Nav>
         </AppHeader>
-        <Route path="/" exact component={Home}></Route>
-        <Route path="/about" component={About}></Route>
+        <Suspense fallback={<div>loading...</div>}>
+          <Switch>
+            <Route path="/" exact>
+              <Home></Home>
+            </Route>
+            <Route path="/about">
+              <About></About>
+            </Route>
+          </Switch>
+        </Suspense>
       </AppWrap>
     </BrowserRouter>
   );

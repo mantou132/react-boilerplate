@@ -6,6 +6,7 @@
   "javascript.format.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "eslint.options": { "ignorePath": ".gitignore" },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "eslint.validate": ["javascript", "typescript", "typescriptreact"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
