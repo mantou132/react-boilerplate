@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint --ext .ts,.tsx --fix src/",
     "start": "cross-env NODE_ENV=development webpack serve --open",
-    "build": "cross-env NODE_ENV=production webpack"
+    "build": "cross-env NODE_ENV=production webpack",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -72,11 +73,6 @@
     "webpack-manifest-plugin": "^3.1.1",
     "webpack-pwa-manifest": "^4.3.0",
     "workbox-webpack-plugin": "^6.1.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.tsx": [
